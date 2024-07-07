@@ -1,0 +1,69 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 200px;
+}
+
+.dropdown_display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.dropdown_icon::after {
+  content: "▼";
+  font-size: 12px;
+  color: #666;
+  margin-left: 10px;
+}
+
+.dropdown_pulldown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 10;
+  max-height: 200px; /* 必要に応じて変更可能 */
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dropdown-spread {
+  display: block;
+}
+
+.dropdown_option {
+  padding: 10px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-selected {
+  background-color: #e0e0e0;
+}
+
+.dropdown_option:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown_preview {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown_preview-child {
+  max-height: 50px; /* 必要に応じて変更可能 */
+  max-width: 50px; /* 必要に応じて変更可能 */
+  background-color: transparent; /* 背景色を透明に設定 */
+}
+
+.dropdown_option img {
+  width: 100%; /* オプション内の画像を全体にフィットさせる */
+  height: auto;
+}
