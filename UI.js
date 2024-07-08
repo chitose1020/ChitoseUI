@@ -1,6 +1,7 @@
+//ドロップダウン
 class dropdown {
   #value;
-  #onChange;
+  #OnChange;
 
   constructor(el_parent) {
     // HTMLElementか判定
@@ -80,7 +81,7 @@ class dropdown {
 // オプション変更検出
     if (this.#value !== option.dataset.value) {
       this.#value = option.dataset.value;
-       if(typeof this.#onChange === 'function') this.#onChange(option.dataset.value);
+       if(typeof this.#OnChange === 'function') this.#OnChange(option.dataset.value);
     }
   }
 
@@ -90,10 +91,100 @@ class dropdown {
   }
 //コールバック関数の指定
   setOnChange(func){
-   this.#onChange = func;
+   this.#OnChange = func;
   }
 }
 
-const sel1 = new dropdown(document.getElementById("sel1"));
-sel1.setOnChange((value) => {console.log(value);});
-const sel2 = new dropdown(document.getElementById("sel2"));
+
+//スライダー
+class slider {
+ #el_parent;
+ #handle;
+ #value;
+ #dragging;
+ #OnChange;
+ #max = 100;
+ #min = 0;
+
+  constructor(el_parent) {
+//HTMLElemntか判定
+    if (!(el_parent instanceof HTMLElement)) return;
+   this.#el_parent = el_parent;
+//スライダーのトラック生成
+   const track = document.createElement("div");
+   track.classList.add("slider_track");
+//ハンドル生成
+   this.#handle = document.createElement("div");
+   this.#handle.classList.add("slider_handle");
+   
+//親要素にトラック,ハンドルを追加
+   this.#el_parent.appendChild(track);
+   this.#el_parent.appendChild(this.#handle);
+   this.#el_parent.style.touchAction = "none";
+
+//初期値設定
+   this.#value = parseFloat(this.#el_parent.getAttribute("data-initial-value")) || 0;
+   this.#handle.style.left = `${((this.#value - this.#min) / (this.#max - this.#min)) * 100}%`;
+
+//イベントの追加
+   this.#el_parent.addEventListener("mousedown", (e) => this.dragstart(e));
+   window.addEventListener("mouseup", () => this.dragstop());
+   window.addEventListener("mousemove", (e) => this.drag(e));
+//モバイル対応
+   this.#el_parent.addEventListener("touchstart", (e) => this.dragstart(e), { passive: false });
+   window.addEventListener("touchend", () => this.dragstop(), { passive: false });
+   window.addEventListener("touchmove", (e) => this.drag(e), { passive: false });
+
+  }
+
+//ドラッグスタート
+  dragstart(e){
+   this.#dragging = true;
+   document.body.parentElement.style.cursor = "grabbing";
+   this.#el_parent.classList.add("slider_grabbing");
+   e.preventDefault();
+  }
+
+//ドラッグストップ
+  dragstop(){
+   this.#dragging = false;
+   document.body.parentElement.style.cursor = "auto";
+   this.#el_parent.classList.remove("slider_grabbing");
+  }
+
+//ドラッグ中
+   drag(e){
+   if (!this.#dragging) return;
+//親要素の位置情報,寸法取得 
+   const rect = this.#el_parent.getBoundingClientRect();
+//タッチかクリックか
+   const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+//割合計算
+   let value = ((clientX - rect.left) / rect.width) * (this.#max - this.#min) + this.#min;
+//制限
+   value = Math.max(this.#min, Math.min(this.#max, value));
+//位置反映
+   this.#handle.style.left = `${((value - this.#min) / (this.#max - this.#min)) * 100}%`;
+   this.#value = value;
+    if (typeof this.#OnChange === "function")this.#OnChange(this.#value);
+   
+  }
+
+  setstates(width,max,min){
+   this.#el_parent.style.width = `${width}px`;
+   this.#max = max;
+   this.#min = min;
+   this.#value = Math.max(this.#min, Math.min(this.#max, this.#value));
+   this.#handle.style.left = `${((this.#value - this.#min) / (this.#max - this.#min)) * 100}%`;
+  }
+//コールバック関数の指定
+  setOnChange(func){
+   this.#OnChange = func;
+  }
+}
+
+//オブジェクト格納
+const UI = {
+  dropdown : dropdown,
+  slider : slider,
+}
