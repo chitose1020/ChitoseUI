@@ -60,10 +60,46 @@
 .dropdown_preview-child {
   max-height: 50px; /* 必要に応じて変更可能 */
   max-width: 50px; /* 必要に応じて変更可能 */
-  background-color: transparent; /* 背景色を透明に設定 */
+  background-color: transparent;
 }
 
 .dropdown_option img {
   width: 100%; /* オプション内の画像を全体にフィットさせる */
   height: auto;
+}
+
+
+/*スライダー*/
+.slider {
+  width: 300px;/*JavaScriptで変更できるようにする予定*/
+  height: 5px;
+  background-color: #ccc;
+  position: relative;
+  cursor: pointer;
+}
+
+.slider_track {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #ccc;
+}
+
+.slider_handle {
+  width: 20px;
+  height: 20px;
+  background-color: #3498DB;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+}
+
+.slider_grabbing{
+  cursor: grabbing;
+}
+
+#slider1{
+  top: 30px;
 }
