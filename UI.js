@@ -100,6 +100,7 @@ class dropdown {
 class slider {
  #el_parent;
  #handle;
+ #track;
  #value;
  #dragging;
  #OnChange;
@@ -110,16 +111,31 @@ class slider {
 //HTMLElemntか判定
     if (!(el_parent instanceof HTMLElement)) return;
    this.#el_parent = el_parent;
+   this.#el_parent.style.position = "relative";
+   this.#el_parent.style.width = "100px";
+   this.#el_parent.style.height = "5px";
+   this.#el_parent.style.cursor = "grab";
+
 //スライダーのトラック生成
-   const track = document.createElement("div");
-   track.classList.add("slider_track");
+   this.#track = document.createElement("div");
+   this.#track.style.width = "100%";
+   this.#track.style.height = "100%";
+   this.#track.style.backgroundColor = "#ccc";
+   this.#track.style.borderRadius = "5px";
 //ハンドル生成
    this.#handle = document.createElement("div");
-   this.#handle.classList.add("slider_handle");
-   
-//親要素にトラック,ハンドルを追加
-   this.#el_parent.appendChild(track);
+   this.#handle.style.position = "absolute";
+   this.#handle.style.width = "20px";
+   this.#handle.style.height = "20px";
+   this.#handle.style.top = "50%";
+   this.#handle.style.transform = "translate(-50%, -50%)";
+   this.#handle.style.backgroundColor = "#333";
+   this.#handle.style.borderRadius = "50%";
+
+   this.#el_parent.appendChild(this.#track);
    this.#el_parent.appendChild(this.#handle);
+
+//タッチ操作の無効化
    this.#el_parent.style.touchAction = "none";
 
 //初期値設定
@@ -141,7 +157,7 @@ class slider {
   dragstart(e){
    this.#dragging = true;
    document.body.parentElement.style.cursor = "grabbing";
-   this.#el_parent.classList.add("slider_grabbing");
+   this.#el_parent.style.cursor = "grabbing";
    e.preventDefault();
   }
 
@@ -149,7 +165,7 @@ class slider {
   dragstop(){
    this.#dragging = false;
    document.body.parentElement.style.cursor = "auto";
-   this.#el_parent.classList.remove("slider_grabbing");
+   this.#el_parent.style.cursor = "grab";
   }
 
 //ドラッグ中
@@ -170,13 +186,31 @@ class slider {
    
   }
 
-  setstates(width,max,min){
-   this.#el_parent.style.width = `${width}px`;
+//範囲指定
+  setRange(max, min){
    this.#max = max;
    this.#min = min;
    this.#value = Math.max(this.#min, Math.min(this.#max, this.#value));
    this.#handle.style.left = `${((this.#value - this.#min) / (this.#max - this.#min)) * 100}%`;
   }
+
+//スタイル設定
+  setWidth(width){
+   this.#el_parent.style.width = `${width}px`;
+   this.#handle.style.left = `${((this.#value - this.#min) / (this.#max - this.#min)) * 100}%`;
+  }
+  setHeight(height){
+   this.#track.style.height = `${height}px`
+  }
+  setHandle_r(r){
+   this.#handle.style.width = `${r * 2}px`
+   this.#handle.style.height = `${r * 2}px`
+  }
+  setColors(color1,color2){
+   this.#track.style.backgroundColor = color1;
+   this.#handle.style.backgroundColor = color2;
+  }
+
 //コールバック関数の指定
   setOnChange(func){
    this.#OnChange = func;
@@ -188,3 +222,4 @@ const UI = {
   dropdown : dropdown,
   slider : slider,
 }
+
