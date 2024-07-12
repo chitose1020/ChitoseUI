@@ -2,6 +2,7 @@
 class dropdown {
   #value;
   #OnChange;
+  #pulldown;
 
   constructor(el_parent) {
     // HTMLElementか判定
@@ -10,16 +11,36 @@ class dropdown {
     // オプション定義＆数測定
     const options = el_parent.querySelectorAll(".dropdown_option");
     if (options.length < 1) return;
+   //親要素にスタイル追加
+   el_parent.style.position = "relative";
+   el_parent.style.display = "inline-block";
+   el_parent.style.cursor = "pointer";
+   el_parent.style.width = "200px";
 
-    // プルダウンの作成
-    const pulldown = document.createElement("div");
-    pulldown.classList.add("dropdown_pulldown");
+// プルダウンの作成
+   this.#pulldown = document.createElement("div");
+   this.#pulldown.classList.add("dropdown_pulldown");
+   this.#pulldown.style.position = "absolute";
+   this.#pulldown.style.width = "100%";
+   this.#pulldown.style.border = "1px solid #ccc";
+   this.#pulldown.style.display = "none";
+   this.#pulldown.style.zIndex = "1000";
+   this.#pulldown.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+   this.#pulldown.style.overflowY = "auto";
+   this.#pulldown.style.maxHeight = "200px";
+   this.#pulldown.style.backgroundColor = "transparent";
 
     // 表示領域の作成
-    const display = document.createElement("div");
-    display.classList.add("dropdown_display");
+   const display = document.createElement("div");
+   display.classList.add("dropdown_display");
+   display.style.padding = "10px";
+   display.style.border = "1px solid #ccc";
+   display.style.backgroundColor = "#fff";
+   display.style.display = "flex";
+   display.style.alignItems = "center";
+   display.style.justifyContent = "space-between";
     display.addEventListener("click", () => {
-      pulldown.classList.toggle("dropdown-spread");
+      this.#pulldown.style.display = this.#pulldown.style.display === "none" ? "block" : "none";
     });
 
     // 選択中の表示
@@ -30,10 +51,11 @@ class dropdown {
     const selected = el_parent.querySelectorAll(".dropdown-selected");
     if (selected.length < 1) {
       preview.appendChild(this.createPreview(options[0]));
-      this.selectOption(options[0], preview, pulldown);
+      this.selectOption(options[0], preview, this.#pulldown);
       this.#value = options[0].dataset.value;
     } else {
       preview.appendChild(this.createPreview(selected[0]));
+      this.selectOption(options[0], preview, this.#pulldown);
       this.#value = selected[0].dataset.value; 
     }
 
@@ -41,22 +63,35 @@ class dropdown {
 
     const icon = document.createElement("div");
     icon.classList.add("dropdown_icon");
+    icon.style.display = "inline-block";
+    icon.textContent = "▼";  // アイコンのテキストを追加
+    icon.style.fontSize = "12px";
+    icon.style.color = "#666";
     display.appendChild(icon);
 
 // 親要素にディスプレイ、プルダウンを追加
     el_parent.appendChild(display);
-    el_parent.appendChild(pulldown);
+    el_parent.appendChild(this.#pulldown);
 
 // オプションにイベントを追加＆プルダウンの子要素にする
     options.forEach(option => {
-      option.addEventListener("click", () => this.selectOption(option, preview, pulldown));
-      pulldown.appendChild(option);
+     option.style.padding = "10px";
+     option.style.cursor = "pointer";
+     option.style.borderBottom = "1px solid #ccc";
+      option.addEventListener("mouseover", () => {
+       option.style.filter = "brightness(90%)";
+      });
+      option.addEventListener("mouseout", () => {
+        option.style.filter = "brightness(100%)";
+      });
+      option.addEventListener("click", () => this.selectOption(option, preview, this.#pulldown));
+     this.#pulldown.appendChild(option);
     });
 
 // 画面外クリックで閉じる
     window.addEventListener("click", (e) => {
       if (!e.target.closest(".dropdown")) {
-        pulldown.classList.remove("dropdown-spread");
+       this.#pulldown.style.display = "none";
       }
     });
   }
@@ -66,17 +101,22 @@ class dropdown {
     const preview = option.cloneNode(true);
     preview.classList.add("dropdown_preview-child");
     preview.classList.remove("dropdown_option");
+    preview.style.backgroundColor = "";
+    preview.style.color = "";
+    preview.style.padding = "";
+    preview.style.borderBottom = "";
     return preview;
   }
 
 // オプション選択
   selectOption(option, preview, pulldown) {
     const options = option.parentElement.querySelectorAll(".dropdown_option");
-    options.forEach(el => el.classList.remove("dropdown-selected"));
-    option.classList.add("dropdown-selected");
+    options.forEach(el => el.style.backgroundColor = "#fff");
+    option.style.backgroundColor = "#c4c4c4"
     preview.innerHTML = '';
     preview.appendChild(this.createPreview(option));
-    pulldown.classList.remove("dropdown-spread");
+    pulldown.style.display = "none";
+
 
 // オプション変更検出
     if (this.#value !== option.dataset.value) {
@@ -89,9 +129,15 @@ class dropdown {
   getValue() {
    return this.#value;
   }
+
 //コールバック関数の指定
   setOnChange(func){
    this.#OnChange = func;
+  }
+
+//スタイル設定
+  setMaxHeight(height){
+   this.#pulldown.style.maxHeight = `${height}px`;
   }
 }
 
@@ -183,7 +229,6 @@ class slider {
    this.#handle.style.left = `${((value - this.#min) / (this.#max - this.#min)) * 100}%`;
    this.#value = value;
     if (typeof this.#OnChange === "function")this.#OnChange(this.#value);
-   
   }
 
 //範囲指定
@@ -222,4 +267,3 @@ const UI = {
   dropdown : dropdown,
   slider : slider,
 }
-
