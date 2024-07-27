@@ -266,26 +266,27 @@ class loading {
   constructor(el_parent) {
     if (!(el_parent instanceof HTMLElement)) return;
    this.spinner = document.createElement("div");
-   this.spinner.style.position = 'fixed';
-   this.spinner.style.top = '0';
-   this.spinner.style.left = '0';
-   this.spinner.style.width = '100%';
-   this.spinner.style.height = '100%';
-   this.spinner.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-   this.spinner.style.display = 'flex';
-   this.spinner.style.alignItems = 'center';
-   this.spinner.style.justifyContent = 'center';
-   this.spinner.style.zIndex = '9999';
+   this.spinner.style.position = "fixed";
+   this.spinner.style.top = "0";
+   this.spinner.style.left = "0";
+   this.spinner.style.width = "100%";
+   this.spinner.style.height = "100%";
+   this.spinner.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+   this.spinner.style.display = "flex";
+   this.spinner.style.alignItems = "center";
+   this.spinner.style.justifyContent = "center";
+   this.spinner.style.zIndex = "9999";
 
-   this.spinnerElement = document.createElement('div');
-   this.spinnerElement.style.width = '50px';
-   this.spinnerElement.style.height = '50px';
-   this.spinnerElement.style.border = '6px solid #ccc';
-   this.spinnerElement.style.borderTopColor = '#333';
-   this.spinnerElement.style.borderRadius = '50%';
+   this.spinnerElement = document.createElement("div");
+   this.spinnerElement.style.width = "50px";
+   this.spinnerElement.style.height = "50px";
+   this.spinnerElement.style.border = "6px solid #ccc";
+   this.spinnerElement.style.borderTopColor = "#333";
+   this.spinnerElement.style.borderRadius = "50%";
     
   //アニメーション追加
    this.AddAnimate();
+   el_parent.appendChild(this.spinner);
    this.spinner.appendChild(this.spinnerElement);
    
   }
