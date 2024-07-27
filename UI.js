@@ -224,7 +224,7 @@ class slider {
 //割合計算
    let value = ((clientX - rect.left) / rect.width) * (this.max - this.min) + this.min;
 //制限
-   value = Math.max(this.#min, Math.min(this.#max, value));
+   value = Math.max(this.min, Math.min(this.max, value));
 //位置反映
    this.handle.style.left = `${((value - this.min) / (this.max - this.min)) * 100}%`;
    this.value = value;
