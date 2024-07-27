@@ -193,7 +193,7 @@ class slider {
    window.addEventListener("mouseup", () => this.dragstop());
    window.addEventListener("mousemove", (e) => this.drag(e));
 //モバイル対応
-   this.#el_parent.addEventListener("touchstart", (e) => this.dragstart(e), { passive: false });
+   this.el_parent.addEventListener("touchstart", (e) => this.dragstart(e), { passive: false });
    window.addEventListener("touchend", () => this.dragstop(), { passive: false });
    window.addEventListener("touchmove", (e) => this.drag(e), { passive: false });
 
