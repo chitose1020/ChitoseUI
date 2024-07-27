@@ -277,12 +277,26 @@ class loading {
    this.spinner.style.justifyContent = 'center';
    this.spinner.style.zIndex = '9999';
 
-   const spinnerElement = document.createElement('div');
-   spinnerElement.style.width = '50px';
-   spinnerElement.style.height = '50px';
-   spinnerElement.style.border = '6px solid #ccc';
-   spinnerElement.style.borderTopColor = '#333';
-   spinnerElement.style.borderRadius = '50%';
+   this.spinnerElement = document.createElement('div');
+   this.spinnerElement.style.width = '50px';
+   this.spinnerElement.style.height = '50px';
+   this.spinnerElement.style.border = '6px solid #ccc';
+   this.spinnerElement.style.borderTopColor = '#333';
+   this.spinnerElement.style.borderRadius = '50%';
+    
+  //アニメーション追加
+   this.AddAnimate();
+   this.spinner.appendChild(this.spinnerElement);
+   
+  }
+  AddAnimate(){
+    const animate = () => {
+     this.spinnerElement.style.transform = `rotate(${this.angle}deg)`;
+     this.angle = (this.angle + 6) % 360;
+     requestAnimationFrame(animate);
+   };
+   this.angle = 0;
+   animate(); 
   }
 }
 
