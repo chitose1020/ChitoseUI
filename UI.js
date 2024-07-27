@@ -265,7 +265,7 @@ class slider {
 class loading {
   constructor(el_parent) {
     if (!(el_parent instanceof HTMLElement)) return;
-   this.spinner = document.createElement
+   this.spinner = document.createElement("div");
    this.spinner.style.position = 'fixed';
    this.spinner.style.top = '0';
    this.spinner.style.left = '0';
