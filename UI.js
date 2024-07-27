@@ -121,7 +121,7 @@ class dropdown {
 // オプション変更検出
     if (this.value !== option.dataset.value) {
       this.value = option.dataset.value;
-       if(typeof this.#OnChange === 'function') this.OnChange(option.dataset.value);
+       if(typeof this.OnChange === 'function') this.OnChange(option.dataset.value);
     }
   }
 
