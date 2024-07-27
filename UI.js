@@ -270,7 +270,7 @@ class loading {
 
 //オブジェクト格納
 const UI = {
-  dropdown : () => { return new dropdown;},
-  slider : () => { return new slider;},
-  loading : () => {return new loading;},
+  dropdown : (el_parent) => { return new dropdown(el_parent);},
+  slider : (el_parent) => { return new slider(el_parent);},
+  loading : (el_parent) => {return new loading(el_parent);},
 }
