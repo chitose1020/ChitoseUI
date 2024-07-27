@@ -9,4 +9,5 @@ const slider1 = new slider(document.getElementById("slider1"));
 slider1.setRange(50,0);
 slider1.setWidth(300);
 slider1.setColors("black","blue");
+const loading1 = new loading(document.getElementById("loading1"));
 }
