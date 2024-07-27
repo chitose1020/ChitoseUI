@@ -262,13 +262,15 @@ class slider {
   }
 }
 
-//オブジェクト格納
-const UI = {
-  dropdown : dropdown,
-  slider : slider,
-}
 class loading {
   constructor(el_parent) {
 
   }
+}
+
+//オブジェクト格納
+const UI = {
+  dropdown : dropdown,
+  slider : slider,
+  loading : loading,
 }
