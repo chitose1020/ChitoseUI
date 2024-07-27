@@ -280,8 +280,8 @@ class loading {
    this.spinnerElement = document.createElement("div");
    this.spinnerElement.style.width = "50px";
    this.spinnerElement.style.height = "50px";
-   this.spinnerElement.style.border = "6px solid #ccc";
-   this.spinnerElement.style.borderTopColor = "#333";
+   this.spinnerElement.style.border = "6px solid #333";
+   this.spinnerElement.style.borderTopColor = "#ccc";
    this.spinnerElement.style.borderRadius = "50%";
     
   //アニメーション追加
