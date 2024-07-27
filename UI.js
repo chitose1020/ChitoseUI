@@ -267,3 +267,8 @@ const UI = {
   dropdown : dropdown,
   slider : slider,
 }
+class loading {
+  constructor(el_parent) {
+
+  }
+}
