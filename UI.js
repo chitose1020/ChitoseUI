@@ -272,7 +272,7 @@ class loading {
    this.spinner.style.width = "100%";
    this.spinner.style.height = "100%";
    this.spinner.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
-   this.spinner.style.display = "flex";
+   this.spinner.style.display = "none";
    this.spinner.style.alignItems = "center";
    this.spinner.style.justifyContent = "center";
    this.spinner.style.zIndex = "9999";
@@ -298,6 +298,13 @@ class loading {
    };
    this.angle = 0;
    animate(); 
+  }
+  show(){
+   this.spinner.style.display = "block";
+  }
+
+  hide(){
+   this.spinner.style.display = "flex";
   }
 }
 
