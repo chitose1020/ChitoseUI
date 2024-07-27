@@ -276,6 +276,13 @@ class loading {
    this.spinner.style.alignItems = 'center';
    this.spinner.style.justifyContent = 'center';
    this.spinner.style.zIndex = '9999';
+
+   const spinnerElement = document.createElement('div');
+   spinnerElement.style.width = '50px';
+   spinnerElement.style.height = '50px';
+   spinnerElement.style.border = '6px solid #ccc';
+   spinnerElement.style.borderTopColor = '#333';
+   spinnerElement.style.borderRadius = '50%';
   }
 }
 
