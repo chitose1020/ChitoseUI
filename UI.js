@@ -264,7 +264,17 @@ class slider {
 
 class loading {
   constructor(el_parent) {
-   
+    if (!(el_parent instanceof HTMLElement)) return;
+   this.spinner.style.position = 'fixed';
+   this.spinner.style.top = '0';
+   this.spinner.style.left = '0';
+   this.spinner.style.width = '100%';
+   this.spinner.style.height = '100%';
+   this.spinner.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+   this.spinner.style.display = 'flex';
+   this.spinner.style.alignItems = 'center';
+   this.spinner.style.justifyContent = 'center';
+   this.spinner.style.zIndex = '9999';
   }
 }
 
