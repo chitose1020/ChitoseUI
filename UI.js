@@ -71,7 +71,7 @@ class dropdown {
 
 // 親要素にディスプレイ、プルダウンを追加
     el_parent.appendChild(display);
-    el_parent.appendChild(this.#pulldown);
+    el_parent.appendChild(this.pulldown);
 
 // オプションにイベントを追加＆プルダウンの子要素にする
     options.forEach(option => {
