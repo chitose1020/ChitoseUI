@@ -29,13 +29,13 @@ const スライダーを格納する変数名 = UI.slider(document.getElementByI
 `setColor(SliderColor,HandleColor)`スライダー、ハンドルの色を変更する  
 `setHandle_r(radius)`ハンドルの半径を変更する  
 
-##loadingspinner/ローディングスピナー
-###追加方法
+## loadingspinner/ローディングスピナー
+### 追加方法
 htmlでdiv要素を作成し、
 ```js
 const 格納する変数名 = UI.loading(document.getElementById("div要素のID"));
 ```
 を実行する。
-###メソッド
+### メソッド
 `show()`ローディングスピナーの表示
 `hide()`ローディングスピナーを隠す
