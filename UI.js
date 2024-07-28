@@ -300,11 +300,11 @@ class loading {
    animate(); 
   }
   show(){
-   this.spinner.style.display = "block";
+   this.spinner.style.display = "flex";
   }
 
   hide(){
-   this.spinner.style.display = "flex";
+   this.spinner.style.display = "none";
   }
 }
 
