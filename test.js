@@ -10,6 +10,10 @@ slider1.setRange(50,0);
 slider1.setWidth(300);
 slider1.setColors("black","blue");
 const loading1 = UI.loading(document.getElementById("loading1"));
-}
 loading1.show();
+setTimeout(() => {
+  loader.hide();
+}, 3000);
+}
+
 
