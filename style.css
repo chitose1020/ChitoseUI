@@ -2,5 +2,6 @@
   top : 10px;
 }
 #copy-btn1{
+  position : relative;
   top : 30px;
 }
