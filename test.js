@@ -14,6 +14,5 @@ loading1.show();
 setTimeout(() => {
   loading1.hide();
 }, 3000);
+const copybtn = UI.copy_button(document.getElementById("copy-btn1"));
 }
-
-
