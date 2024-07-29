@@ -308,9 +308,19 @@ class loading {
   }
 }
 
+class copy_btn {
+  constructor(el_parent) {
+   if (!(el_parent instanceof HTMLElement)) return;
+   this.el_parent = el_parent;
+   this.text = el_parent.dataset.text;
+   console.log(this.text);
+  }
+}
+
 //オブジェクト格納
 const UI = {
   dropdown : (el_parent) => { return new dropdown(el_parent);},
   slider : (el_parent) => { return new slider(el_parent);},
   loading : (el_parent) => {return new loading(el_parent);},
+  copy_button : (el_parent) => {return new copy_btn(el_parent);},
 }
