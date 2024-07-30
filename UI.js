@@ -317,7 +317,7 @@ class copy_btn {
    this.message = document.createElement("div");
    this.message.textContent = "copy";
    this.message.style.display = "none";
-   el_parente.appendChild(this.message);
+   el_parent.appendChild(this.message);
    el_parent.addEventListener("mouseover",() => {
     this.message.style.display = "block";
    });
