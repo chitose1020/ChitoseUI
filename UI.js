@@ -326,21 +326,21 @@ class copy_btn {
 class tooltip {
   constructor(el_parent) {
     if (!(el_parent instanceof HTMLElement)) return;
-     this.el_tooltip = document.createElement("div");
+   this.el_tooltip = document.createElement("div");
+   this.el_tooltip.style.display = "none";
+   this.el_tooltip.style.position = "absolute";
+   this.el_tooltip.textContent = el_parent.dataset.text;
+    this.el_tooltip.addEventListener("mouseover",() => {
+     this.el_tooltip.style.display = "block";
+    });
+    this.el_tooltip.addEventListener("mouseout", () => {
      this.el_tooltip.style.display = "none";
-     this.el_tooltip.style.position = "absolute";
-     this.el_tooltip.textContent = el_parent.dataset.text;
-      this.el_tooltip.addEventListener("mouseover",() => {
-       this.el_tooltip.style.display = "block";
-      });
-      this.el_tooltip.addEventListener("mouseout", () => {
-       this.el_tooltip.style.display = "none";
-      });
-    }
+    });
   }
-  ChhangeText(text){
-    this.text = text;
-    this.tooltip.textContent = this.text;
+
+  ChangeText(text){
+   this.text = text;
+   this.tooltip.textContent = this.text;
   }
 }
 
