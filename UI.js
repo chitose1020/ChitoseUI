@@ -313,7 +313,15 @@ class copy_btn {
    if (!(el_parent instanceof HTMLElement)) return;
    this.el_parent = el_parent;
    this.text = el_parent.dataset.text;
-   console.log(this.text);
+   el_parent.style.backgroundColor = "";
+   this.message = document.createElement("div");
+   this.message.textContent = "copy";
+   el_parent.addEventListener("mouseover",() => {
+
+   });
+   el_parent.addEventListener("click",() => {
+    console.log(this.text);
+   })
   }
 }
 
