@@ -331,10 +331,10 @@ class tooltip {
    this.el_tooltip.style.position = "absolute";
    this.el_tooltip.style.display = "none";
    this.el_tooltip.textContent = el_parent.dataset.text;
-    this.el_tooltip.addEventListener("mouseover",() => {
+    el_parent.addEventListener("mouseover",() => {
      this.el_tooltip.style.display = "block";
     });
-    this.el_tooltip.addEventListener("mouseout", () => {
+    el_parent.addEventListener("mouseout", () => {
      this.el_tooltip.style.display = "none";
     });
    el_parent.appendChild(this.el_tooltip);
