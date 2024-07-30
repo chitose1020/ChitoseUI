@@ -277,22 +277,22 @@ class loading {
    this.spinner.style.justifyContent = "center";
    this.spinner.style.zIndex = "9999";
 
-   this.spinnerElement = document.createElement("div");
-   this.spinnerElement.style.width = "50px";
-   this.spinnerElement.style.height = "50px";
-   this.spinnerElement.style.border = "6px solid #ccc";
-   this.spinnerElement.style.borderTopColor = "#333";
-   this.spinnerElement.style.borderRadius = "50%";
+   this.el_spinner = document.createElement("div");
+   this.el_spinner.style.width = "50px";
+   this.el_spinner.style.height = "50px";
+   this.el_spinner.style.border = "6px solid #ccc";
+   this.el_spinner.style.borderTopColor = "#333";
+   this.el_spinner.style.borderRadius = "50%";
     
   //アニメーション追加
    this.AddAnimate();
    el_parent.appendChild(this.spinner);
-   this.spinner.appendChild(this.spinnerElement);
+   this.spinner.appendChild(this.el_spinner);
    
   }
   AddAnimate(){
     const animate = () => {
-     this.spinnerElement.style.transform = `rotate(${this.angle}deg)`;
+     this.el_spinner.style.transform = `rotate(${this.angle}deg)`;
      this.angle = (this.angle + 6) % 360;
      requestAnimationFrame(animate);
    };
@@ -314,16 +314,33 @@ class copy_btn {
    this.el_parent = el_parent;
    this.text = el_parent.dataset.text;
    el_parent.style.backgroundColor = "";
-   this.message = document.createElement("div");
-   this.message.textContent = "copy";
-   this.message.style.display = "none";
+   this.tooltip = document.createElement("div");
+   this.tooltip.dataset.text = "copy";
    el_parent.appendChild(this.message);
-   el_parent.addEventListener("mouseover",() => {
-    this.message.style.display = "block";
-   });
    el_parent.addEventListener("click",() => {
     console.log(this.text);
    })
+  }
+}
+
+class tooltip {
+  constructor(el_parent) {
+    if (!(el_parent instanceof HTMLElement)) return;
+     this.el_tooltip = document.createElement("div");
+     this.el_tooltip.style.display = "none";
+     this.el_tooltip.style.position = "absolute";
+     this.el_tooltip.textContent = el_parent.dataset.text;
+      this.el_tooltip.addEventListener("mouseover",() => {
+       this.el_tooltip.style.display = "block";
+      });
+      this.el_tooltip.addEventListener("mouseout", () => {
+       this.el_tooltip.style.display = "none";
+      });
+    }
+  }
+  ChhangeText(text){
+    this.text = text;
+    this.tooltip.textContent = this.text;
   }
 }
 
@@ -333,4 +350,5 @@ const UI = {
   slider : (el_parent) => { return new slider(el_parent);},
   loading : (el_parent) => {return new loading(el_parent);},
   copy_button : (el_parent) => {return new copy_btn(el_parent);},
+  tooltip : (el_parent) => {return new tooltip(el_parent);},
 }
