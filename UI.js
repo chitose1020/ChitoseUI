@@ -316,8 +316,10 @@ class copy_btn {
    el_parent.style.backgroundColor = "";
    this.message = document.createElement("div");
    this.message.textContent = "copy";
+   this.message.style.display = "none";
+   el_parente.appendChild(this.message);
    el_parent.addEventListener("mouseover",() => {
-
+    this.message.style.display = "block";
    });
    el_parent.addEventListener("click",() => {
     console.log(this.text);
