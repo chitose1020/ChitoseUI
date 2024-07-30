@@ -343,7 +343,7 @@ class tooltip {
   }
 
   ChangeText(text){
-   this.tooltip.textContent = text;
+   this.el_tooltip.textContent = text;
   }
 }
 
