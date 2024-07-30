@@ -316,6 +316,7 @@ class copy_btn {
    el_parent.style.backgroundColor = "";
    this.tooltip = document.createElement("div");
    this.tooltip.dataset.text = "copy";
+   this.tooltip = UI.tooltip(this.tooltip);
    el_parent.appendChild(this.tooltip);
    el_parent.addEventListener("click",() => {
     console.log(this.text);
