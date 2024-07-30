@@ -314,10 +314,10 @@ class copy_btn {
    this.el_parent = el_parent;
    this.text = el_parent.dataset.text;
    el_parent.style.backgroundColor = "";
-   this.tooltip = document.createElement("div");
-   this.tooltip.dataset.text = "copy";
-   this.tooltip = UI.tooltip(this.tooltip);
-   el_parent.appendChild(this.tooltip);
+   this.el_tooltip = document.createElement("div");
+   this.el_tooltip.dataset.text = "copy";
+   this.tooltip = UI.tooltip(this.el_tooltip);
+   el_parent.appendChild(this.el_tooltip);
    el_parent.addEventListener("click",() => {
     console.log(this.text);
    })
@@ -328,8 +328,8 @@ class tooltip {
   constructor(el_parent) {
     if (!(el_parent instanceof HTMLElement)) return;
    this.el_tooltip = document.createElement("div");
-   this.el_tooltip.style.display = "none";
    this.el_tooltip.style.position = "absolute";
+   this.el_tooltip.style.display = "none";
    this.el_tooltip.textContent = el_parent.dataset.text;
     this.el_tooltip.addEventListener("mouseover",() => {
      this.el_tooltip.style.display = "block";
@@ -337,6 +337,7 @@ class tooltip {
     this.el_tooltip.addEventListener("mouseout", () => {
      this.el_tooltip.style.display = "none";
     });
+   el_parent.appendChild(this.el_tooltip);
   }
 
   ChangeText(text){
