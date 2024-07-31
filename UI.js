@@ -336,7 +336,7 @@ class tooltip {
       this.el_tooltip.style.display = "block";
        this.el_tooltip.style.left = `${e.pageX - this.el_parent.style.left}px`;
        this.el_tooltip.style.top = `${e.pageY - this.el_parent.style.top}px`;
-       console.log(e.pageX,e.pageY);
+       console.log(this.el_tooltip.style.left,this.el_tooltip.style.top);
      });
      this.el_parent.addEventListener("mouseout", () => {
        this.el_tooltip.style.display = "none";
