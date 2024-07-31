@@ -340,6 +340,7 @@ class tooltip {
        this.el_tooltip.style.display = "none";
        this.el_tooltip.style.right = e.screenX + 20;
        this.el_tooltip.style.top = e.screenY + 20;
+       console.log(e.screenX,e.screenY);
      });
    el_parent.appendChild(this.el_tooltip);
   }
