@@ -332,13 +332,13 @@ class tooltip {
    this.el_tooltip.style.backgroundColor = "#090d36";
    this.el_tooltip.style.color = "white";
    this.el_tooltip.style.whiteSpace = "nowrap";
-  　 this.el_parent.addEventListener("mouseover", () => {
+  　 this.el_parent.addEventListener("mouseover", (e) => {
       this.el_tooltip.style.display = "block";
        this.el_tooltip.style.right = e.screenX;
        this.el_tooltip.style.top = e.screenY;
        console.log(e.screenX,e.screenY);
      });
-     this.el_parent.addEventListener("mouseout", (e) => {
+     this.el_parent.addEventListener("mouseout", () => {
        this.el_tooltip.style.display = "none";
      });
    el_parent.appendChild(this.el_tooltip);
