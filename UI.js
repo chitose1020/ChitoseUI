@@ -334,13 +334,12 @@ class tooltip {
    this.el_tooltip.style.whiteSpace = "nowrap";
   　 this.el_parent.addEventListener("mouseover", () => {
       this.el_tooltip.style.display = "block";
-      console.log("tooltip");
-     });
-     this.el_parent.addEventListener("mouseout", (e) => {
-       this.el_tooltip.style.display = "none";
        this.el_tooltip.style.right = e.screenX;
        this.el_tooltip.style.top = e.screenY;
        console.log(e.screenX,e.screenY);
+     });
+     this.el_parent.addEventListener("mouseout", (e) => {
+       this.el_tooltip.style.display = "none";
      });
    el_parent.appendChild(this.el_tooltip);
   }
