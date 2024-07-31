@@ -338,8 +338,8 @@ class tooltip {
      });
      this.el_parent.addEventListener("mouseout", (e) => {
        this.el_tooltip.style.display = "none";
-       this.el_tooltip.style.right = e.screenX + 20;
-       this.el_tooltip.style.top = e.screenY + 20;
+       this.el_tooltip.style.right = e.screenX;
+       this.el_tooltip.style.top = e.screenY;
        console.log(e.screenX,e.screenY);
      });
    el_parent.appendChild(this.el_tooltip);
