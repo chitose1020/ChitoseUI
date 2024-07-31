@@ -336,8 +336,10 @@ class tooltip {
       this.el_tooltip.style.display = "block";
       console.log("tooltip");
      });
-     this.el_parent.addEventListener("mouseout", () => {
+     this.el_parent.addEventListener("mouseout", (e) => {
        this.el_tooltip.style.display = "none";
+       this.el_tooltip.style.right = e.screenX + 20;
+       this.el_tooltip.style.left = e.screenY + 20;
      });
    el_parent.appendChild(this.el_tooltip);
   }
