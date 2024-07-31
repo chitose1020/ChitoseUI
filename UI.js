@@ -334,8 +334,8 @@ class tooltip {
    this.el_tooltip.style.whiteSpace = "nowrap";
   　 this.el_parent.addEventListener("mouseover", (e) => {
       this.el_tooltip.style.display = "block";
-       this.el_tooltip.style.left = `${e.clientX}px`;
-       this.el_tooltip.style.top = `${e.clientY}px`;
+       this.el_tooltip.style.left = `${e.pageX - this.el_parent.style.left}px`;
+       this.el_tooltip.style.top = `${e.pageY - this.el_parent.style.top}px`;
        console.log(e.pageX,e.pageY);
      });
      this.el_parent.addEventListener("mouseout", () => {
