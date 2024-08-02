@@ -335,10 +335,12 @@ class tooltip {
    this.el_tooltip.style.whiteSpace = "nowrap";
   　 this.el_parent.addEventListener("mouseover", (e) => {
       if(this.display == ""){
-       this.el_tooltip.style.display = "block";
-       this.el_tooltip.style.left = `${e.pageX - this.el_parent.offsetLeft + 5}px`;
-       this.el_tooltip.style.top = `${e.pageY - this.el_parent.offsetTop + 5}px`;
-       this.display = "block";
+        var timer = window.setTimeout(() => {
+         this.el_tooltip.style.display = "block";
+         this.el_tooltip.style.left = `${e.pageX - this.el_parent.offsetLeft + 5}px`;
+         this.el_tooltip.style.top = `${e.pageY - this.el_parent.offsetTop + 5}px`;
+         this.display = "block";
+        },300);
       }
      });
      this.el_parent.addEventListener("mouseout", () => {
