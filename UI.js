@@ -332,7 +332,7 @@ class tooltip {
    this.el_tooltip.style.display = "none";
    this.el_tooltip.style.backgroundColor = "#090d36";
    this.el_tooltip.style.color = "white";
-   this.el_tooltip.style.border = "solid 1px white";
+   this.el_tooltip.style.border = "1px white　solid";
    this.el_tooltip.style.whiteSpace = "nowrap";
    this.el_tooltip.style.pointerEvents = "none";
   　 this.el_parent.addEventListener("mouseover", (e) => {
